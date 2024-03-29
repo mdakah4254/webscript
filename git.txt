@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check if a domain name is provided as an argument
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <domain>"
+  exit 1
+fi
+
+domain=$1
+
+# Use dig to find the IP address
+ip_address=$(dig +short $domain)
+
+# Print the result
+if [ -n "$ip_address" ]; then
+  echo "IP Address for $domain: $ip_address"
+else
+  echo "Unable to find IP address for $domain"
+fi
